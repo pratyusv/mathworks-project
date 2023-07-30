@@ -1,0 +1,47 @@
+1. Run the script.sh in the test_code folder.
+2. The output is the difference between the output of the original code and modified code.
+
+Results:
+---------------------------
+1. Output of OptGraph_orig.cpp
+    Measure_AddBlocks took: 6111ms.
+    Measure_FindAttributesByBlock took: 36ms.
+    Measure_FindBlocksByAttribute took: 12450ms.
+
+2. Output of OptGraph_mod.cpp
+    Measure_AddBlocks took: 327ms.
+    Measure_FindAttributesByBlock took: 45ms.
+    Measure_FindBlocksByAttribute took: 53ms.
+
+
+Output Validation:
+-----------------------
+For the output validation of the modified code, I have changed the original code by inserting output statements in the function "Measure_FindBlocksByAttribute" and "Measure_FindAttributesByBlock". No modification is done to change the functionality of the user code.
+
+The modified structure is as follows.
+
+Classes
+----------
+1. AttributeList: 
+    Maintains the list of attribute names.
+
+2. BlockList:
+    Maintains the list of blocks in the graph.
+
+3. Block:
+    Creates a block with an attribute list.
+
+4. BlockAttributeInterface:
+    For each attribute maintains a list of blocks.
+
+5. Graph:
+    Creates a graph. Provides a function to add a block to the graph. Ensures every block has a unique name. 
+
+
+
+
+Changes:
+
+1. BlockAttributeInterface reduces the time of retrieving the list of blocks for an attribute to constant time. This is achieved by maintaining a map between the attribute and the list of blocks that contain that attribute.
+
+2. blockNamesMap in the Graph class maintains the set of block names. This reduces the search time for finding if the name of the new block to be inserted in the graph has a collision.
